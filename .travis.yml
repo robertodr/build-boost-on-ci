@@ -1,0 +1,62 @@
+language: cpp
+sudo: false
+dist: trusty
+matrix:
+  fast_finish: true
+  include:
+    - os: linux
+      addons: &1
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-7
+            - gcc-7
+            - libpython3.5-dev
+            - python3.5-dev
+    - os: osx
+      osx_image: xcode9.2
+
+cache:
+  timeout: 1000
+  directories:
+    - $HOME/Deps/boost
+
+env:
+  global:
+    - LC_ALL="en_US.UTF-8"
+    - LANG="en_US.UTF-8"
+    - LANGUAGE="en_US.UTF-8"
+    - PYTHONIOENCODING=UTF-8
+    # Invalidate PYENV_ROOT
+    - PYENV_ROOT=$HOME/fuffa
+
+before_install:
+  # Dependencies are downloaded in $HOME/Downloads and installed in $HOME/Deps
+  - mkdir -p $HOME/Downloads $HOME/Deps
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
+      export PYTHON3="/usr/bin/python3.5";
+    else
+      export PYTHON3="/usr/local/bin/python3";
+    fi
+
+install:
+  - ./testing/dependencies/travis/install.sh
+  - ./testing/dependencies/travis/boost.sh
+  - pipenv install --python $PYTHON3
+  - pipenv run python --version
+
+before_script:
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
+      test -n $CC && unset CC && export CC=gcc-7;
+      test -n $CXX && unset CXX && export CXX=g++-7;
+      test -n $FC && unset FC && export FC=gfortran-7;
+    else
+      test -n $CC && unset CC && export CC=gcc;
+      test -n $CXX && unset CXX && export CXX=g++;
+      test -n $FC && unset FC && export FC=gfortran;
+    fi
+
+script:
+  - ./testing/dependencies/report_versions.sh
+  - echo "Fuffa"
