@@ -17,7 +17,7 @@ else
     if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
        # Configure
        ./bootstrap.sh \
-           --with-toolset="gcc" \
+           --with-toolset=gcc \
            --with-libraries=filesystem,system,test,python \
            --with-python="$PYTHON3" \
            --prefix="$HOME/Deps/boost" &> /dev/null
@@ -32,16 +32,22 @@ else
             --with-system \
             --with-python &> /dev/null
     elif [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
-        brew install boost@1.59
-        brew install boost-python@1.59 --with-python3
-        ## Info
-        #ls -lhtr /usr/local/Cellar/boost/1.67.0_1
-        #ls -lhtr /usr/local/Cellar/boost/1.67.0_1/include
-        #ls -lhtr /usr/local/Cellar/boost/1.67.0_1/lib
-        #ls -lhtr /usr/local/Cellar/boost-python/1.67.0
-        #ls -lhtr /usr/local/Cellar/boost-python/1.67.0/lib
-        ## Symlink the installed Boost.Python to where all the rest of Boost resides
-        #ln -sf /usr/local/Cellar/boost-python/1.67.0/lib/* /usr/local/Cellar/boost/1.67.0_1/lib
+        # Configure
+        ./bootstrap.sh \
+            --with-toolset=darwin \
+            --with-libraries=filesystem,system,test,python \
+            --with-python="$PYTHON3" \
+            --prefix="$HOME/Deps/boost" &> /dev/null
+        # Build and install
+        ./b2 -q install \
+             link=shared \
+             threading=multi \
+             variant=release \
+             toolset=darwin \
+             --with-filesystem \
+             --with-test \
+             --with-system \
+             --with-python &> /dev/null
     fi
     cd "$TRAVIS_BUILD_DIR"
 fi
