@@ -18,6 +18,7 @@ else
     elif [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
         toolset="darwin"
     fi
+    cd "$target_path"
     # Configure
     ./bootstrap.sh \
         --with-toolset="$toolset" \
@@ -34,5 +35,6 @@ else
          --with-test \
          --with-system \
          --with-python
+    cd "$TRAVIS_BUILD_DIR"
 fi
 echo "-- Done installing Boost $Boost_VERSION"

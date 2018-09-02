@@ -59,4 +59,3 @@ before_script:
 
 script:
   - ./testing/dependencies/report_versions.sh
-  - echo "Fuffa"
