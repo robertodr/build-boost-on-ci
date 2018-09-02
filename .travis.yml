@@ -49,6 +49,8 @@ install:
     fi
   - ./testing/dependencies/travis/cmake.sh
   - export PATH=$HOME/Deps/cmake/3.5.2/bin${PATH:+:$PATH}
+  - pipenv install --python $PYTHON3
+  - pipenv run python --version
 
 before_script:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
@@ -63,6 +65,6 @@ before_script:
 
 script:
   - ./testing/dependencies/report_versions.sh
-  - cmake -H. -Bbuild
-  - cmake --build build
-  - cmake --build build --target test
+  - pipenv run cmake -H. -Bbuild
+  - pipenv run cmake --build build
+  - pipenv run cmake --build build --target test
