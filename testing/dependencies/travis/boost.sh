@@ -3,9 +3,9 @@
 set -eu -o pipefail
 
 Boost_VERSION="1.59.0"
-echo "-- Installing Boost $Boost_VERSION"
+echo "-- Installing Boost"
 if [[ -f $HOME/Deps/boost/include/boost/version.hpp ]]; then
-    echo "-- Boost $Boost_VERSION FOUND in cache"
+    echo "-- Boost FOUND in cache"
 else
     echo "-- Boost $Boost_VERSION NOT FOUND in cache"
     target_path=$HOME/Downloads/boost_"${Boost_VERSION//\./_}"
@@ -34,7 +34,14 @@ else
     elif [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
         brew install boost
         brew install boost-python
+        # Info
+        ls -lhtr /usr/local/Cellar/boost/1.67.0_1
+        ls -lhtr /usr/local/Cellar/boost-python/1.67.0
+        ls -lhtr /usr/local/Cellar/boost-python/1.67.0/include
+        ls -lhtr /usr/local/Cellar/boost-python/1.67.0/lib
+        # Symlink the installed Boost.Python to where all the rest of Boost resides
+        ln -sf /usr/local/Cellar/boost-python/1.67.0/lib/* /usr/local/Cellar/boost/1.67.0_1/lib
     fi
     cd "$TRAVIS_BUILD_DIR"
 fi
-echo "-- Done installing Boost $Boost_VERSION"
+echo "-- Done installing Boost"
