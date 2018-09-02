@@ -33,7 +33,7 @@ else
             --with-python &> /dev/null
     elif [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
         brew install boost@1.59
-        brew install boost-python@1.59 --without-python@2 --with-python
+        brew install boost-python@1.59 --with-python
         ## Info
         #ls -lhtr /usr/local/Cellar/boost/1.67.0_1
         #ls -lhtr /usr/local/Cellar/boost/1.67.0_1/include
