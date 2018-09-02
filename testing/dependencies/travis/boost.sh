@@ -32,16 +32,16 @@ else
             --with-system \
             --with-python &> /dev/null
     elif [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
-        brew install boost
-        brew install boost-python
-        # Info
-        ls -lhtr /usr/local/Cellar/boost/1.67.0_1
-        ls -lhtr /usr/local/Cellar/boost/1.67.0_1/include
-        ls -lhtr /usr/local/Cellar/boost/1.67.0_1/lib
-        ls -lhtr /usr/local/Cellar/boost-python/1.67.0
-        ls -lhtr /usr/local/Cellar/boost-python/1.67.0/lib
-        # Symlink the installed Boost.Python to where all the rest of Boost resides
-        ln -sf /usr/local/Cellar/boost-python/1.67.0/lib/* /usr/local/Cellar/boost/1.67.0_1/lib
+        brew install boost@1.59
+        brew install boost-python@1.59 --without-python@2 --with-python
+        ## Info
+        #ls -lhtr /usr/local/Cellar/boost/1.67.0_1
+        #ls -lhtr /usr/local/Cellar/boost/1.67.0_1/include
+        #ls -lhtr /usr/local/Cellar/boost/1.67.0_1/lib
+        #ls -lhtr /usr/local/Cellar/boost-python/1.67.0
+        #ls -lhtr /usr/local/Cellar/boost-python/1.67.0/lib
+        ## Symlink the installed Boost.Python to where all the rest of Boost resides
+        #ln -sf /usr/local/Cellar/boost-python/1.67.0/lib/* /usr/local/Cellar/boost/1.67.0_1/lib
     fi
     cd "$TRAVIS_BUILD_DIR"
 fi
