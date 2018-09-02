@@ -33,7 +33,7 @@ else
             --with-python &> /dev/null
     elif [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
         brew install boost
-        brew install boost-python --without-python --with-python3
+        brew install boost-python
         ## Configure
         #./bootstrap.sh \
         #    --with-toolset="darwin" \
