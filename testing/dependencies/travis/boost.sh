@@ -32,12 +32,13 @@ else
             --with-system \
             --with-python &> /dev/null
     elif [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
+        ls -lhtr /usr/local/Cellar/python/3.7.0/Frameworks/Python.framework/Versions/3.7
         # Configure
         ./bootstrap.sh \
             --with-toolset=darwin \
             --with-libraries=filesystem,system,test,python \
             --with-python="$PYTHON3" \
-            --prefix="$HOME/Deps/boost"
+            --prefix="$HOME/Deps/boost" &> /dev/null
         # Build and install
         ./b2 -q install \
              link=shared \
@@ -47,7 +48,7 @@ else
              --with-filesystem \
              --with-test \
              --with-system \
-             --with-python &> /dev/null
+             --with-python
     fi
     cd "$TRAVIS_BUILD_DIR"
 fi
