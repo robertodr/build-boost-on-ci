@@ -21,6 +21,7 @@ cache:
   timeout: 1000
   directories:
     - $HOME/Deps/boost
+    - $HOME/Library/Caches/Homebrew
 
 env:
   global:
