@@ -34,22 +34,6 @@ else
     elif [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
         brew install boost
         brew install boost-python
-        ## Configure
-        #./bootstrap.sh \
-        #    --with-toolset="darwin" \
-        #    --with-libraries=filesystem,system,test,python \
-        #    --with-python="$PYTHON3" \
-        #    --prefix="$HOME/Deps/boost" &> /dev/null
-        ## Build and install
-        #./b2 -q install \
-        #     link=shared \
-        #     threading=multi \
-        #     variant=release \
-        #     toolset="darwin" \
-        #     --with-filesystem \
-        #     --with-test \
-        #     --with-system \
-        #     --with-python
     fi
     cd "$TRAVIS_BUILD_DIR"
 fi
