@@ -43,8 +43,11 @@ before_install:
 install:
   - ./testing/dependencies/travis/install.sh
   - ./testing/dependencies/travis/boost.sh
-  - pipenv install --python $PYTHON3
-  - pipenv run python --version
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
+      export BOOST_ROOT="$HOME/Deps/boost";
+    fi
+  - ./testing/dependencies/travis/cmake.sh
+  - export PATH=$HOME/Deps/cmake/3.5.2/bin${PATH:+:$PATH}
 
 before_script:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
@@ -59,3 +62,6 @@ before_script:
 
 script:
   - ./testing/dependencies/report_versions.sh
+  - cmake -H. -Bbuild
+  - cmake --build build
+  - cmake --build build --target test
