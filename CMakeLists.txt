@@ -34,7 +34,7 @@ list(
 set(_boost_component_found "")
 
 foreach(_component IN ITEMS ${_components})
-  find_package(Boost COMPONENTS ${_component} QUIET)
+  find_package(Boost COMPONENTS ${_component})
   if(Boost_FOUND)
     set(_boost_component_found ${_component})
     break()
