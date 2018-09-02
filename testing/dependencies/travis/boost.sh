@@ -37,7 +37,7 @@ else
             --with-toolset=darwin \
             --with-libraries=filesystem,system,test,python \
             --with-python="$PYTHON3" \
-            --prefix="$HOME/Deps/boost" &> /dev/null
+            --prefix="$HOME/Deps/boost"
         # Build and install
         ./b2 -q install \
              link=shared \
