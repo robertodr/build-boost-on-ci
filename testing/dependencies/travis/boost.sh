@@ -32,8 +32,9 @@ else
             --with-system \
             --with-python &> /dev/null
     elif [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
+        echo "ls -lhtr /usr/local/Cellar/python/3.7.0/Frameworks/Python.framework/Versions/3.7/include"
         ls -lhtr /usr/local/Cellar/python/3.7.0/Frameworks/Python.framework/Versions/3.7/include
-        ls -lhtr /usr/local/Cellar/python/3.7.0/Frameworks/Python.framework/Versions/3.7/Headers/include/python3.7m
+        ls -lhtr /usr/local/Cellar/python/3.7.0/Frameworks/Python.framework/Versions/3.7/Headers/include
         # Configure
         ./bootstrap.sh \
             --with-toolset=darwin \
