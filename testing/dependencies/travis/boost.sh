@@ -36,8 +36,9 @@ else
         brew install boost-python
         # Info
         ls -lhtr /usr/local/Cellar/boost/1.67.0_1
+        ls -lhtr /usr/local/Cellar/boost/1.67.0_1/include
+        ls -lhtr /usr/local/Cellar/boost/1.67.0_1/lib
         ls -lhtr /usr/local/Cellar/boost-python/1.67.0
-        ls -lhtr /usr/local/Cellar/boost-python/1.67.0/include
         ls -lhtr /usr/local/Cellar/boost-python/1.67.0/lib
         # Symlink the installed Boost.Python to where all the rest of Boost resides
         ln -sf /usr/local/Cellar/boost-python/1.67.0/lib/* /usr/local/Cellar/boost/1.67.0_1/lib
