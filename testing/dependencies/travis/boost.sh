@@ -30,9 +30,10 @@ else
             --with-filesystem \
             --with-test \
             --with-system \
-            --with-python
+            --with-python &> /dev/null
     elif [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
-        echo "Nothing to see here!"
+        brew install boost
+        brew install boost-python --without-python --with-python3
         ## Configure
         #./bootstrap.sh \
         #    --with-toolset="darwin" \

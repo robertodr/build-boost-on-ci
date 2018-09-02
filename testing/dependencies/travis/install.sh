@@ -10,7 +10,5 @@ elif [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
   brew uninstall --force --ignore-dependencies boost
   brew upgrade python
   brew install gcc
-  brew install boost --without-single
-  brew install boost-python --without-python --with-python3
   brew install pipenv
 fi
