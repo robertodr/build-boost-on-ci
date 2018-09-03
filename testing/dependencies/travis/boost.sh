@@ -2,7 +2,7 @@
 
 set -eu -o pipefail
 
-Boost_VERSION="1.59.0"
+Boost_VERSION="1.60.0"
 echo "-- Installing Boost"
 if [[ -f $HOME/Deps/boost/include/boost/version.hpp ]]; then
     echo "-- Boost FOUND in cache"
@@ -32,8 +32,10 @@ else
             --with-system \
             --with-python &> /dev/null
     elif [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
+        # With help from: https://thb.lt/blog/notes/2014/boost-python-3-osx.html
         # Configure
         ./bootstrap.sh \
+            --with-toolset=gcc \
             --with-libraries=filesystem,system,test,python \
             --with-python-version=3.7 \
             --with-python-root=$(python3-config --prefix) \
@@ -45,6 +47,7 @@ else
              link=shared \
              threading=multi \
              variant=release \
+             toolset=gcc \
              --with-filesystem \
              --with-test \
              --with-system \
