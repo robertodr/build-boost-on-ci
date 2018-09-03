@@ -3,9 +3,9 @@
 set -eu -o pipefail
 
 Boost_VERSION="1.60.0"
-echo "-- Installing Boost"
+echo "-- Installing Boost $Boost_VERSION"
 if [[ -f $HOME/Deps/boost/include/boost/version.hpp ]]; then
-    echo "-- Boost FOUND in cache"
+    echo "-- Boost $Boost_VERSION FOUND in cache"
 else
     echo "-- Boost $Boost_VERSION NOT FOUND in cache"
     target_path=$HOME/Downloads/boost_"${Boost_VERSION//\./_}"
@@ -55,4 +55,4 @@ else
     fi
     cd "$TRAVIS_BUILD_DIR"
 fi
-echo "-- Done installing Boost"
+echo "-- Done installing Boost $Boost_VERSION"
