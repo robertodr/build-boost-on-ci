@@ -45,7 +45,6 @@ install:
 before_build:
   - pipenv run python --version
   - cmake --version
-  - cd C:\projects
 
 # the pipenv lock was added as workaround for pipenv complaining about wrong checksum
 # after upgrade to Python 3.7 on Appveyor
