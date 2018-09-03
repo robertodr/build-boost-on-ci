@@ -5,7 +5,7 @@ rem bits we need: filesystem, test, system, and python.
 if "%CMAKE_GENERATOR%"=="Visual Studio 15 2017 Win64" (
   echo "Using VS generator %CMAKE_GENERATOR%"
   echo "-- Installing Boost"
-  if exist "C:\Deps\boost_1_67_0\include\boost\version.hpp" (
+  if exist "C:\Deps\boost_1_67_0\include\boost-1_67\" (
     echo "-- Boost FOUND in cache"
   ) else (
     echo "-- Boost NOT FOUND in cache"

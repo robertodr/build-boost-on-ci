@@ -53,7 +53,7 @@ add_library(account
 
 target_link_libraries(account
   PUBLIC
-    "Boost::${_boost_component_found}"
+    Boost::${_boost_component_found}
     ${PYTHON_LIBRARIES}
   )
 
