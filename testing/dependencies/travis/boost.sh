@@ -35,7 +35,7 @@ else
         # With help from: https://thb.lt/blog/notes/2014/boost-python-3-osx.html
         # Configure
         ./bootstrap.sh \
-            --with-toolset=gcc \
+            --with-toolset=clang \
             --with-libraries=filesystem,system,test,python \
             --with-python-version=3.7 \
             --with-python-root=$(python3-config --prefix) \
@@ -47,7 +47,7 @@ else
              link=shared \
              threading=multi \
              variant=release \
-             toolset=gcc \
+             toolset=clang \
              --with-filesystem \
              --with-test \
              --with-system \
