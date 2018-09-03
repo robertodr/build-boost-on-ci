@@ -11,15 +11,13 @@ if "%nonVSGenerator%"=="true" (
   echo "Using VS generator %CMAKE_GENERATOR%"
   echo "Configuring, building, and installing Boost"
 
-  rem now install Boost
+  rem Download
   bash -c "curl -LOs https://dl.bintray.com/boostorg/release/1.66.0/source/boost_1_66_0.zip"
   bash -c "7z x boost_1_66_0.zip"
-  bash -c "cd boost_1_66_0"
-  dir .
+  
   rem Configure
-  rem ./bootstrap.sh \
-  rem     --with-toolset=gcc \
-  rem     --with-libraries=filesystem,system,test,python \
+  cd boost_1_66_0
+  bootstrap.bat --with-toolset=msvc --with-libraries=filesystem,system,test,python --prefix="C:\Deps\boost_1.66.0"
   rem     --with-python="$PYTHON3" \
   rem     --prefix="C:\Deps\boost_1.66.0" &> /dev/null
   rem Build and install
