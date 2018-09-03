@@ -32,10 +32,10 @@ else
             --with-system \
             --with-python &> /dev/null
     elif [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
-        python-config --prefix
-        python-config --includes
-        python-config --ldflags
-        python-config --libs
+        python3-config --prefix
+        python3-config --includes
+        python3-config --ldflags
+        python3-config --libs
         # Configure
         ./bootstrap.sh \
             --with-toolset=darwin \
