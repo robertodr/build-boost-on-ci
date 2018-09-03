@@ -3,9 +3,6 @@ rem If not, download and build them. We do not build all of Boost, just the
 rem bits we need: filesystem, test, system, and python.
 
 if "%CMAKE_GENERATOR%"=="Visual Studio 15 2017 Win64" (
-  echo "Using non-VS generator %CMAKE_GENERATOR%"
-  echo "Nothing to do here!"
-) else (
   echo "Using VS generator %CMAKE_GENERATOR%"
   echo "-- Installing Boost"
   if exist "C:\Deps\boost_1_67_0\include\boost\version.hpp" (
@@ -26,4 +23,7 @@ if "%CMAKE_GENERATOR%"=="Visual Studio 15 2017 Win64" (
   )
   echo "-- Done installing Boost"
   set BOOST_ROOT=C:\Deps\boost_1_67_0
+) else (
+  echo "Using non-VS generator %CMAKE_GENERATOR%"
+  echo "Nothing to do here!"
 )
