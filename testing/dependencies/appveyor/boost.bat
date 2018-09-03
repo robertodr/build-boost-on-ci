@@ -17,18 +17,10 @@ if "%nonVSGenerator%"=="true" (
   
   rem Configure
   cd boost_1_66_0
-  bootstrap.bat --with-toolset=msvc --with-libraries=filesystem,system,test,python --prefix="C:\Deps\boost_1.66.0"
-  rem     --with-python="$PYTHON3" \
-  rem     --prefix="C:\Deps\boost_1.66.0" &> /dev/null
+  bootstrap.bat --with-toolset=msvc --with-python="C:\Python37-x64\python.exe" --with-libraries=filesystem,system,test,python --prefix="C:\Deps\boost_1.66.0"
   rem Build and install
-  rem ./b2 -q install \
-  rem      link=shared \
-  rem      threading=multi \
-  rem      variant=release \
-  rem      toolset=gcc-7 \
-  rem      --with-filesystem \
-  rem      --with-test \
-  rem      --with-system \
-  rem      --with-python &> /dev/null
+  b2 -q install link=static,shared threading=multi variant=release toolset=msvc --with-filesystem --with-test --with-system --with-python --prefix="C:\Deps\boost_1.66.0"
   rem Clean up
+  cd ..
+  rmdir boost_1_66_0 boost_1_66_0.zip
 )
