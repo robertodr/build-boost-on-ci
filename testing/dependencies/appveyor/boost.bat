@@ -18,9 +18,11 @@ if "%nonVSGenerator%"=="true" (
   rem Configure
   cd boost_1_67_0
   bootstrap.bat > NUL
+
   rem Build and install
   b2 -q -d0 install link=static,shared threading=multi variant=release toolset=msvc address-model=64 --with-filesystem --with-test --with-system --with-python --prefix="C:\Deps\boost_1_67_0"
+
   rem Clean up
-  rem cd ..
-  rem rmdir boost_1_67_0 boost_1_67_0.zip
+  cd %APPVEYOR_BUILD_FOLDER%
+  rmdir boost_1_67_0 boost_1_67_0.zip
 )
