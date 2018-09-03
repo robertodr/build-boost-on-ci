@@ -13,7 +13,7 @@ if "%nonVSGenerator%"=="true" (
 
   rem now install Boost
   bash -c "curl -LOs https://dl.bintray.com/boostorg/release/1.66.0/source/boost_1_66_0.zip"
-  bash -c "unzip -qq boost_1_66_0.zip"
+  bash -c "7z x boost_1_66_0.zip"
   bash -c "cd boost_1_66_0"
   dir .
   rem Configure
