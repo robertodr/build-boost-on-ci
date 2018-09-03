@@ -32,18 +32,19 @@ else
             --with-system \
             --with-python &> /dev/null
     elif [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
-        python3-config --prefix
-        python3-config --includes
-        python3-config --ldflags
-        python3-config --libs
+        ls -ltrh $(python3-config --prefix)
+        ls -lhtr /usr/local/Cellar/python/3.7.0/Frameworks/Python.framework/Versions/3.7
         # Configure
         ./bootstrap.sh \
             --with-toolset=darwin \
             --with-libraries=filesystem,system,test,python \
-            --with-python="$PYTHON3" \
+            --with-python-version=3.7 \
+            --with-python-root=/usr/local/Cellar/python/3.7.0/Frameworks/Python.framework/Versions/3.7 \
+            --with-python=/usr/local/Cellar/python/3.7.0/Frameworks/Python.framework/Versions/3.7/bin/python3.7 \
             --prefix="$HOME/Deps/boost" &> /dev/null
         # Build and install
         ./b2 -q install \
+             include="/usr/local/Cellar/python/3.7.0/Frameworks/Python.framework/Versions/3.7/include/python3.7m" \
              link=shared \
              threading=multi \
              variant=release \
