@@ -12,9 +12,9 @@ if "%nonVSGenerator%"=="true" (
   echo "Configuring, building, and installing Boost"
 
   rem now install Boost
-  bash -c "curl -LOs https://dl.bintray.com/boostorg/release/1.66.0/source/boost_1_66_0.zip &&
-           unzip -qq boost_1_66_0.zip &&
-           cd boost_1_66_0"
+  bash -c "curl -LOs https://dl.bintray.com/boostorg/release/1.66.0/source/boost_1_66_0.zip"
+  bash -c "unzip -qq boost_1_66_0.zip"
+  bash -c "cd boost_1_66_0"
   dir .
   rem Configure
   rem ./bootstrap.sh \
