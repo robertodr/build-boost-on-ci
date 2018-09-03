@@ -12,16 +12,16 @@ if "%nonVSGenerator%"=="true" (
   echo "Configuring, building, and installing Boost"
 
   rem Download
-  bash -c "curl -LOs https://dl.bintray.com/boostorg/release/1.66.0/source/boost_1_66_0.zip"
-  bash -c "7z x boost_1_66_0.zip"
+  bash -c "curl -LOs https://dl.bintray.com/boostorg/release/1.67.0/source/boost_1_67_0.zip"
+  bash -c "7z x boost_1_67_0.zip"
   
   rem Configure
-  cd boost_1_66_0
+  cd boost_1_67_0
   bootstrap.bat
   rem --with-toolset=msvc --with-python="C:\Python37-x64\python.exe" --with-libraries=filesystem,system,test,python --prefix="C:\Deps\boost_1.66.0"
   rem Build and install
-  b2 -q install link=static,shared threading=multi variant=release toolset=msvc --with-filesystem --with-test --with-system --with-python --prefix="C:\Deps\boost_1.66.0"
+  b2 -q install link=static,shared threading=multi variant=release toolset=msvc --with-filesystem --with-test --with-system --with-python --prefix="C:\Deps\boost_1_67_0"
   rem Clean up
   cd ..
-  rmdir boost_1_66_0 boost_1_66_0.zip
+  rmdir boost_1_67_0 boost_1_67_0.zip
 )
