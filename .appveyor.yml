@@ -35,10 +35,12 @@ init:
 cache:
   - c:\tools\vcpkg\installed\ -> testing\dependencies\appveyor\install.bat
   - c:\msys64\var\cache\pacman\pkg -> testing\dependencies\appveyor\install.bat
+  - c:\Deps\boost_1.66.0 -> testing\dependencies\appveyor\boost.bat
 
 install:
   - python -m pip install pipenv
   - '%APPVEYOR_BUILD_FOLDER%\testing\dependencies\appveyor\install.bat'
+  - '%APPVEYOR_BUILD_FOLDER%\testing\dependencies\appveyor\boost.bat'
   - pipenv install --three
 
 # extract step has to happen before the sh.exe workaround otherwise 7z will complain

@@ -26,6 +26,4 @@ if "%nonVSGenerator%"=="true" (
   cd c:\tools\vcpkg
   vcpkg integrate install
   cd %APPVEYOR_BUILD_FOLDER%
-
-  rem now install Boost
 )
