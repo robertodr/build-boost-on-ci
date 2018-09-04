@@ -21,7 +21,9 @@ environment:
     - CMAKE_GENERATOR: 'MSYS Makefiles'
       BUILDFLAGS: 'VERBOSE=1'
       TESTTARGET: 'test'
-      CMAKEARGS: ' -DBoost_USE_MULTITHREADED=ON -DBoost_USE_STATIC_RUNTIME=ON -DCMAKE_CXX_FLAGS="-D_hypot=hypot"'
+      CMAKEARGS: '-DBoost_USE_STATIC_LIBS=ON -DCMAKE_CXX_FLAGS="-D_hypot=hypot"'
+
+#-DBoost_USE_MULTITHREADED=ON -DBoost_USE_STATIC_RUNTIME=ON
 
 matrix:
   fast_finish: true
