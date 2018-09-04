@@ -53,16 +53,15 @@ before_build:
 # after upgrade to Python 3.7 on Appveyor
 build_script:
   - cd %APPVEYOR_BUILD_FOLDER%\boost-filesystem
-  - pipenv run cmake -H. -Bbuild -G"%CMAKE_GENERATOR%" -DCMAKE_BUILD_TYPE=Release -DCMAKE_CONFIGURATION_TYPES=Release %CMAKEARGS%
+  - pipenv run cmake -H. -Bbuild -G"%CMAKE_GENERATOR%" -DCMAKE_BUILD_TYPE=Release -DCMAKE_CONFIGURATION_TYPES=Release #%CMAKEARGS%
   - pipenv run cmake --build build --config Release
+  - cd %APPVEYOR_BUILD_FOLDER%\boost-test
+  - pipenv run cmake -H. -Bbuild -G"%CMAKE_GENERATOR%" -DCMAKE_BUILD_TYPE=Release -DCMAKE_CONFIGURATION_TYPES=Release #%CMAKEARGS%
+  - pipenv run cmake --build build --config Release
+  - pipenv run cmake --build build --target %TESTTARGET% --config Release
   - cd %APPVEYOR_BUILD_FOLDER%\boost-python
   - pipenv run cmake -H. -Bbuild -G"%CMAKE_GENERATOR%" -DCMAKE_BUILD_TYPE=Release -DCMAKE_CONFIGURATION_TYPES=Release %CMAKEARGS%
   - pipenv run cmake --build build --config Release
   - pipenv run cmake --build build --target %TESTTARGET% --config Release
 
 deploy: off
-
-    #  - cd %APPVEYOR_BUILD_FOLDER%\boost-test
-    #  - pipenv run cmake -H. -Bbuild -G"%CMAKE_GENERATOR%" -DCMAKE_BUILD_TYPE=Release -DCMAKE_CONFIGURATION_TYPES=Release %CMAKEARGS%
-    #  - pipenv run cmake --build build --config Release
-    #  - pipenv run cmake --build build --target %TESTTARGET% --config Release
