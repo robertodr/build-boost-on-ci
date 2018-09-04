@@ -52,8 +52,7 @@ before_build:
 # the pipenv lock was added as workaround for pipenv complaining about wrong checksum
 # after upgrade to Python 3.7 on Appveyor
 build_script:
-  - cmake --version
-  #- pipenv run cmake -H. -Bbuild -G"%CMAKE_GENERATOR%" -DCMAKE_BUILD_TYPE=Release -DCMAKE_CONFIGURATION_TYPES=Release %CMAKEARGS%
+  - pipenv run cmake -H. -Bbuild -G"%CMAKE_GENERATOR%" -DCMAKE_BUILD_TYPE=Release -DCMAKE_CONFIGURATION_TYPES=Release %CMAKEARGS%
   #- pipenv run cmake --build build --config Release
   #- pipenv run cmake --build build --target %TESTTARGET% --config Release
 
