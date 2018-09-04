@@ -54,12 +54,12 @@ before_build:
 # after upgrade to Python 3.7 on Appveyor
 build_script:
   - cd %APPVEYOR_BUILD_FOLDER%\boost-filesystem
-  - pipenv run cmake -H. -Bbuild -G"%CMAKE_GENERATOR%" -DCMAKE_BUILD_TYPE=Release -DCMAKE_CONFIGURATION_TYPES=Release -DBoost_USE_STATIC_LIBS=ON
-  - pipenv run cmake --build build --config Release
+  - pipenv run cmake -H. -Bbuild -G"%CMAKE_GENERATOR%" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CONFIGURATION_TYPES=Debug -DBoost_USE_STATIC_LIBS=ON
+  - pipenv run cmake --build build --config Debug
   - cd %APPVEYOR_BUILD_FOLDER%\boost-test
-  - pipenv run cmake -H. -Bbuild -G"%CMAKE_GENERATOR%" -DCMAKE_BUILD_TYPE=Release -DCMAKE_CONFIGURATION_TYPES=Release
-  - pipenv run cmake --build build --config Release
-  - pipenv run cmake --build build --target %TESTTARGET% --config Release
+  - pipenv run cmake -H. -Bbuild -G"%CMAKE_GENERATOR%" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CONFIGURATION_TYPES=Debug
+  - pipenv run cmake --build build --config Debug
+  - pipenv run cmake --build build --target %TESTTARGET% --config Debug
   - cd %APPVEYOR_BUILD_FOLDER%\boost-python
   - pipenv run cmake -H. -Bbuild -G"%CMAKE_GENERATOR%" -DCMAKE_BUILD_TYPE=Release -DCMAKE_CONFIGURATION_TYPES=Release %CXXFLAGS% -DBoost_USE_STATIC_LIBS=ON
   - pipenv run cmake --build build --config Release
