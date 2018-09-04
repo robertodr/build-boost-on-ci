@@ -69,7 +69,7 @@ set_target_properties(account
   )
 
 add_custom_target(
-  GenexDemo
+  GenexDemoBefore
   COMMAND ${CMAKE_COMMAND} -E echo "BEFORE: $<TARGET_FILE:account>"
   VERBATIM
 )
@@ -83,7 +83,7 @@ if(WIN32)
 endif()
 
 add_custom_target(
-  GenexDemo
+  GenexDemoAfter
   COMMAND ${CMAKE_COMMAND} -E echo "AFTER: $<TARGET_FILE:account>"
   VERBATIM
 )
