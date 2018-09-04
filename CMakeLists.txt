@@ -68,12 +68,6 @@ set_target_properties(account
     PREFIX ""
   )
 
-add_custom_target(
-  GenexDemoBefore
-  COMMAND ${CMAKE_COMMAND} -E echo "BEFORE: $<TARGET_FILE:account>"
-  VERBATIM
-)
-
 if(WIN32)
   # python will not import dll but expects pyd
   set_target_properties(account
@@ -81,12 +75,6 @@ if(WIN32)
       SUFFIX ".pyd"
     )
 endif()
-
-add_custom_target(
-  GenexDemoAfter
-  COMMAND ${CMAKE_COMMAND} -E echo "AFTER: $<TARGET_FILE:account>"
-  VERBATIM
-)
 
 # turn on testing
 enable_testing()
