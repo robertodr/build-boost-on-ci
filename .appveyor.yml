@@ -55,7 +55,6 @@ build_script:
   - cd %APPVEYOR_BUILD_FOLDER%\boost-filesystem
   - pipenv run cmake -H. -Bbuild -G"%CMAKE_GENERATOR%" -DCMAKE_BUILD_TYPE=Release -DCMAKE_CONFIGURATION_TYPES=Release %CMAKEARGS%
   - pipenv run cmake --build build --config Release
-  - pipenv run cmake --build build --target %TESTTARGET% --config Release
   - cd %APPVEYOR_BUILD_FOLDER%\boost-test
   - pipenv run cmake -H. -Bbuild -G"%CMAKE_GENERATOR%" -DCMAKE_BUILD_TYPE=Release -DCMAKE_CONFIGURATION_TYPES=Release %CMAKEARGS%
   - pipenv run cmake --build build --config Release
