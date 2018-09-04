@@ -17,7 +17,7 @@ environment:
     - CMAKE_GENERATOR: 'Visual Studio 15 2017 Win64'
       BUILDFLAGS: '/verbosity:normal'
       TESTTARGET: 'RUN_TESTS'
-      CXXFLAGS: '-DCMAKE_CXX_FLAGS="-DBOOST_ALL_NO_LIB /EHsc"'
+      CXXFLAGS: '-DCMAKE_CXX_FLAGS="-DBOOST_ALL_NO_LIB"'
     - CMAKE_GENERATOR: 'MSYS Makefiles'
       BUILDFLAGS: 'VERBOSE=1'
       TESTTARGET: 'test'
@@ -62,7 +62,7 @@ build_script:
   - pipenv run cmake --build build --config Release
   - pipenv run cmake --build build --target %TESTTARGET% --config Release
   - cd %APPVEYOR_BUILD_FOLDER%\boost-python
-  - pipenv run cmake -H. -Bbuild -G"%CMAKE_GENERATOR%" -DCMAKE_BUILD_TYPE=Release -DCMAKE_CONFIGURATION_TYPES=Release #-DBoost_USE_STATIC_LIBS=ON %CXXFLAGS%
+  - pipenv run cmake -H. -Bbuild -G"%CMAKE_GENERATOR%" -DCMAKE_BUILD_TYPE=Release -DCMAKE_CONFIGURATION_TYPES=Release %CXXFLAGS% #-DBoost_USE_STATIC_LIBS=ON %CXXFLAGS%
   - pipenv run cmake --build build --config Release
   - pipenv run cmake --build build --target %TESTTARGET% --config Release
 
