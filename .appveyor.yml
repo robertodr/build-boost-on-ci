@@ -44,8 +44,6 @@ install:
   - python -m pip install pipenv
   - '%APPVEYOR_BUILD_FOLDER%\testing\dependencies\appveyor\install.bat'
   - '%APPVEYOR_BUILD_FOLDER%\testing\dependencies\appveyor\boost.bat'
-  - dir c:\Deps\boost_1_67_0\include
-  - dir c:\Deps\boost_1_67_0\lib
   - pipenv install --three
 
 # extract step has to happen before the sh.exe workaround otherwise 7z will complain
@@ -57,7 +55,7 @@ before_build:
 # after upgrade to Python 3.7 on Appveyor
 build_script:
   - cd %APPVEYOR_BUILD_FOLDER%\boost-filesystem
-  - pipenv run cmake -H. -Bbuild -G"%CMAKE_GENERATOR%" -DCMAKE_BUILD_TYPE=Release -DCMAKE_CONFIGURATION_TYPES=Release #%CMAKEARGS%
+  - pipenv run cmake -H. -Bbuild -G"%CMAKE_GENERATOR%" -DCMAKE_BUILD_TYPE=Release -DCMAKE_CONFIGURATION_TYPES=Release -DBoost_USE_STATIC_LIBS=ON #%CMAKEARGS%
   - pipenv run cmake --build build --config Release
   - cd %APPVEYOR_BUILD_FOLDER%\boost-test
   - pipenv run cmake -H. -Bbuild -G"%CMAKE_GENERATOR%" -DCMAKE_BUILD_TYPE=Release -DCMAKE_CONFIGURATION_TYPES=Release #%CMAKEARGS%
