@@ -67,6 +67,14 @@ before_script:
 
 script:
   - ./testing/dependencies/report_versions.sh
+  - cd $TRAVIS_BUILD_DIR/boost-filesystem
+  - pipenv run cmake -H. -Bbuild
+  - pipenv run cmake --build build
+  - cd $TRAVIS_BUILD_DIR/boost-test
+  - pipenv run cmake -H. -Bbuild
+  - pipenv run cmake --build build
+  - pipenv run cmake --build build --target test
+  - cd $TRAVIS_BUILD_DIR/boost-python
   - pipenv run cmake -H. -Bbuild
   - pipenv run cmake --build build
   - pipenv run cmake --build build --target test
