@@ -68,7 +68,13 @@ set_target_properties(account
     PREFIX ""
   )
 
-if(WIN32)
+add_custom_target(
+  GenexDemo
+  COMMAND ${CMAKE_COMMAND} -E echo "$<TARGET_FILE:account>"
+  VERBATIM
+)
+
+if(WIN32 AND (NOT MSVC))
   # python will not import dll but expects pyd
   set_target_properties(account
     PROPERTIES
