@@ -33,7 +33,7 @@ init:
   - set PATH=%PATH:C:\Python27;=%
   - set PATH=%PATH:C:\Python27\Scripts;=%
   # Put Boost libraries on PATH
-  - set PATH=C:\Deps\boost_1_67_0\lib64-msvc-14.1;%PATH%
+  - set PATH=C:\Deps\boost_1_67_0\lib;%PATH%
 
 cache:
   - c:\tools\vcpkg\installed\ -> testing\dependencies\appveyor\install.bat
@@ -44,7 +44,8 @@ install:
   - python -m pip install pipenv
   - '%APPVEYOR_BUILD_FOLDER%\testing\dependencies\appveyor\install.bat'
   - '%APPVEYOR_BUILD_FOLDER%\testing\dependencies\appveyor\boost.bat'
-  - dir c:\Deps\boost_1_67_0
+  - dir c:\Deps\boost_1_67_0\include
+  - dir c:\Deps\boost_1_67_0\lib
   - pipenv install --three
 
 # extract step has to happen before the sh.exe workaround otherwise 7z will complain
