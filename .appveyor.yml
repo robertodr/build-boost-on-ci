@@ -32,6 +32,8 @@ init:
   # Remove Python 2.7 from path
   - set PATH=%PATH:C:\Python27;=%
   - set PATH=%PATH:C:\Python27\Scripts;=%
+  # Put Boost libraries on PATH
+  - set PATH=C:\Deps\boost_1_67_0\lib64-msvc-14.1;%PATH%
 
 cache:
   - c:\tools\vcpkg\installed\ -> testing\dependencies\appveyor\install.bat
@@ -42,6 +44,7 @@ install:
   - python -m pip install pipenv
   - '%APPVEYOR_BUILD_FOLDER%\testing\dependencies\appveyor\install.bat'
   - '%APPVEYOR_BUILD_FOLDER%\testing\dependencies\appveyor\boost.bat'
+  - dir c:\Deps\boost_1_67_0
   - pipenv install --three
 
 # extract step has to happen before the sh.exe workaround otherwise 7z will complain
@@ -52,17 +55,16 @@ before_build:
 # the pipenv lock was added as workaround for pipenv complaining about wrong checksum
 # after upgrade to Python 3.7 on Appveyor
 build_script:
-  - cmake --version
-  # - cd %APPVEYOR_BUILD_FOLDER%\boost-filesystem
-  # - pipenv run cmake -H. -Bbuild -G"%CMAKE_GENERATOR%" -DCMAKE_BUILD_TYPE=Release -DCMAKE_CONFIGURATION_TYPES=Release #%CMAKEARGS%
-  # - pipenv run cmake --build build --config Release
-  # - cd %APPVEYOR_BUILD_FOLDER%\boost-test
-  # - pipenv run cmake -H. -Bbuild -G"%CMAKE_GENERATOR%" -DCMAKE_BUILD_TYPE=Release -DCMAKE_CONFIGURATION_TYPES=Release #%CMAKEARGS%
-  # - pipenv run cmake --build build --config Release
-  # - pipenv run cmake --build build --target %TESTTARGET% --config Release
-  # - cd %APPVEYOR_BUILD_FOLDER%\boost-python
-  # - pipenv run cmake -H. -Bbuild -G"%CMAKE_GENERATOR%" -DCMAKE_BUILD_TYPE=Release -DCMAKE_CONFIGURATION_TYPES=Release %CMAKEARGS%
-  # - pipenv run cmake --build build --config Release
-  # - pipenv run cmake --build build --target %TESTTARGET% --config Release
+  - cd %APPVEYOR_BUILD_FOLDER%\boost-filesystem
+  - pipenv run cmake -H. -Bbuild -G"%CMAKE_GENERATOR%" -DCMAKE_BUILD_TYPE=Release -DCMAKE_CONFIGURATION_TYPES=Release #%CMAKEARGS%
+  - pipenv run cmake --build build --config Release
+  - cd %APPVEYOR_BUILD_FOLDER%\boost-test
+  - pipenv run cmake -H. -Bbuild -G"%CMAKE_GENERATOR%" -DCMAKE_BUILD_TYPE=Release -DCMAKE_CONFIGURATION_TYPES=Release #%CMAKEARGS%
+  - pipenv run cmake --build build --config Release
+  - pipenv run cmake --build build --target %TESTTARGET% --config Release
+  - cd %APPVEYOR_BUILD_FOLDER%\boost-python
+  - pipenv run cmake -H. -Bbuild -G"%CMAKE_GENERATOR%" -DCMAKE_BUILD_TYPE=Release -DCMAKE_CONFIGURATION_TYPES=Release #%CMAKEARGS%
+  - pipenv run cmake --build build --config Release
+  - pipenv run cmake --build build --target %TESTTARGET% --config Release
 
 deploy: off
