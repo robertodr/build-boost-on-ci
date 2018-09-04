@@ -23,8 +23,6 @@ environment:
       TESTTARGET: 'test'
       CMAKEARGS: '-DBoost_USE_STATIC_LIBS=ON -DCMAKE_CXX_FLAGS="-D_hypot=hypot"'
 
-#-DBoost_USE_MULTITHREADED=ON -DBoost_USE_STATIC_RUNTIME=ON
-
 matrix:
   fast_finish: true
 
@@ -54,6 +52,15 @@ before_build:
 # the pipenv lock was added as workaround for pipenv complaining about wrong checksum
 # after upgrade to Python 3.7 on Appveyor
 build_script:
+  - cd %APPVEYOR_BUILD_FOLDER%\boost-filesystem
+  - pipenv run cmake -H. -Bbuild -G"%CMAKE_GENERATOR%" -DCMAKE_BUILD_TYPE=Release -DCMAKE_CONFIGURATION_TYPES=Release %CMAKEARGS%
+  - pipenv run cmake --build build --config Release
+  - pipenv run cmake --build build --target %TESTTARGET% --config Release
+  - cd %APPVEYOR_BUILD_FOLDER%\boost-test
+  - pipenv run cmake -H. -Bbuild -G"%CMAKE_GENERATOR%" -DCMAKE_BUILD_TYPE=Release -DCMAKE_CONFIGURATION_TYPES=Release %CMAKEARGS%
+  - pipenv run cmake --build build --config Release
+  - pipenv run cmake --build build --target %TESTTARGET% --config Release
+  - cd %APPVEYOR_BUILD_FOLDER%\boost-python
   - pipenv run cmake -H. -Bbuild -G"%CMAKE_GENERATOR%" -DCMAKE_BUILD_TYPE=Release -DCMAKE_CONFIGURATION_TYPES=Release %CMAKEARGS%
   - pipenv run cmake --build build --config Release
   - pipenv run cmake --build build --target %TESTTARGET% --config Release
