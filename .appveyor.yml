@@ -60,9 +60,9 @@ build_script:
   - pipenv run cmake -H. -Bbuild -G"%CMAKE_GENERATOR%" -DCMAKE_BUILD_TYPE=Release -DCMAKE_CONFIGURATION_TYPES=Release
   - pipenv run cmake --build build --config Release
   - pipenv run cmake --build build --target %TESTTARGET% --config Release
-    #  - cd %APPVEYOR_BUILD_FOLDER%\boost-python
-    #  - pipenv run cmake -H. -Bbuild -G"%CMAKE_GENERATOR%" -DCMAKE_BUILD_TYPE=Release -DCMAKE_CONFIGURATION_TYPES=Release %CXXFLAGS% #-DBoost_USE_STATIC_LIBS=ON %CXXFLAGS%
-    #  - pipenv run cmake --build build --config Release
-    #  - pipenv run cmake --build build --target %TESTTARGET% --config Release
+  - cd %APPVEYOR_BUILD_FOLDER%\boost-python
+  - pipenv run cmake -H. -Bbuild -G"%CMAKE_GENERATOR%" -DCMAKE_BUILD_TYPE=Release -DCMAKE_CONFIGURATION_TYPES=Release %CXXFLAGS% #-DBoost_USE_STATIC_LIBS=ON %CXXFLAGS%
+  - pipenv run cmake --build build --config Release
+  - pipenv run cmake --build build --target %TESTTARGET% --config Release
 
 deploy: off
